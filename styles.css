@@ -496,23 +496,18 @@ body {
   background: var(--white);
 }
 .project-responsibilities {
-    list-style: disc; /* Sử dụng dấu chấm tròn */
-    margin-left: 1.2rem;
-    padding-left: 0;
-    margin-bottom: 1rem;
+  list-style: disc;
+  margin-left: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .project-responsibilities li {
-    font-size: var(--font-size-sm);
-    color: var(--gray); /* Màu xám nhạt */
-    line-height: 1.6;
-    margin-bottom: 0.3rem;
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
 }
 
-/* Đảm bảo project-description vẫn giữ khoảng cách */
-.project-description {
-    margin-bottom: 0.5rem; /* Giảm khoảng cách để nhường chỗ cho list */
-}
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -525,7 +520,6 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
-  position: relative;
 }
 
 .project-card:hover {
@@ -535,57 +529,64 @@ body {
 
 .project-image {
   position: relative;
-  overflow: hidden;
   height: 250px;
+  overflow: hidden;
 }
 
-.project-image img {
+.project-image > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: var(--transition);
+  transition: transform 0.5s ease;
 }
 
-.project-card:hover .project-image img {
+.project-card:hover .project-image > img {
   transform: scale(1.1);
 }
 
 .project-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(37, 99, 235, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 1rem;
   opacity: 0;
-  transition: var(--transition);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .project-overlay {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .project-link {
   width: 50px;
   height: 50px;
-  background: var(--white);
+  background: transparent;
+  border: 2px solid #ffffff;
   border-radius: 50%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--primary);
-  transition: var(--transition);
-  text-decoration: none;
+
+  transition: all 0.3s ease;
+}
+
+.project-link img {
+  width: 24px;
+  height: 24px;
 }
 
 .project-link:hover {
+  background: #ffffff;
   transform: scale(1.1);
-  background: var(--primary);
-  color: var(--white);
+}
+.project-link:hover img {
+  filter: invert(1); 
 }
 
 .project-content {
@@ -602,7 +603,7 @@ body {
 .project-description {
   color: var(--gray);
   line-height: 1.8;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem;
 }
 
 .project-tags {
@@ -620,6 +621,7 @@ body {
   font-weight: 500;
 }
 
+
 /* Contact Section */
 .contact {
   background: #f8fafc;
@@ -627,8 +629,10 @@ body {
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Changed from 1fr 1fr to ensure proper display on all screens */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-lg);
+  align-items: start;
 }
 
 .contact-info h3 {
@@ -663,9 +667,12 @@ body {
   flex-shrink: 0;
 }
 
+/* Added explicit styling for social links container */
 .social-links {
   display: flex;
   gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .social-link {
@@ -679,6 +686,12 @@ body {
   color: var(--primary);
   transition: var(--transition);
   box-shadow: var(--shadow);
+  text-decoration: none;
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
 }
 
 .social-link:hover {
@@ -694,6 +707,10 @@ body {
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
+  /* Ensure form displays properly */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .form-group {
@@ -716,6 +733,7 @@ body {
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
   transition: var(--transition);
+  width: 100%;
 }
 
 .form-group input:focus,
@@ -726,6 +744,7 @@ body {
 
 .form-group textarea {
   resize: vertical;
+  min-height: 120px;
 }
 
 /* Footer */
@@ -969,4 +988,10 @@ body {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Added btn-block class for full width button */
+.btn-block {
+  width: 100%;
+  margin-top: var(--spacing-sm);
 }
